@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card';
 import { CARDS } from '../card-list';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cards',
@@ -13,20 +12,23 @@ export class CardsComponent implements OnInit {
   cards: Card[] = [];
   selectedCard: Card;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit() {
     this.getMemoryCards();
   }
 
   getMemoryCards() {
-    for (let index = 0; index < 2; index++) {
-      this.cards = this.cards.concat(CARDS);  
+    let count = 1;
+    while (count != 3) {
+      for (let index = 0; index < CARDS.length; index++) {
+        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, index * count));
+      }
+      count++;
     }
   }
 
   onCardClick(card) {
     this.selectedCard = card;
-    this.selectedCard.isClicked = true;
   }
 }
