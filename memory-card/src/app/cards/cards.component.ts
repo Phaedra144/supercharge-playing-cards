@@ -10,7 +10,7 @@ import { CARDS } from '../card-list';
 export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
-  selectedCard: Card;
+  selectedCards: Card[] = [];
 
   constructor() { }
 
@@ -19,16 +19,22 @@ export class CardsComponent implements OnInit {
   }
 
   getMemoryCards() {
-    let count = 1;
-    while (count != 3) {
+    let count = 0;
+    while (count !== 2) {
       for (let index = 0; index < CARDS.length; index++) {
-        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, index * count));
+        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl));
       }
       count++;
     }
   }
 
   onCardClick(card) {
-    this.selectedCard = card;
+    if (this.selectedCards[0] == null) {
+      this.selectedCards[0] = card;
+    } else if (this.selectedCards[1] == null) {
+      this.selectedCards[1] = card;
+    } else {
+      this.selectedCards = [];
+    }
   }
 }
