@@ -1,1 +1,6 @@
-
+::ng-deep body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: gainsboro;
+  margin: 200px auto;
+}
