@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from '../card';
 import { CARDS } from '../card-list';
 
 @Component({
@@ -8,10 +9,18 @@ import { CARDS } from '../card-list';
 })
 export class CardsComponent implements OnInit {
 
-  cards = CARDS;
+  cards: Card[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.getMemoryCards();
   }
+
+  getMemoryCards() {
+    for (let index = 0; index < 2; index++) {
+      this.cards = this.cards.concat(CARDS);  
+    }
+  }
+
 }
