@@ -19,10 +19,10 @@ export class CardsComponent implements OnInit {
   }
 
   getMemoryCards() {
-    let count = 0;
-    while (count !== 2) {
+    let count = 1;
+    while (count !== 3) {
       for (let index = 0; index < CARDS.length; index++) {
-        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl));
+        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, index * count));
       }
       count++;
     }
@@ -36,5 +36,17 @@ export class CardsComponent implements OnInit {
     } else {
       this.selectedCards = [];
     }
+
+    if (this.selectedCards.length === 2) {
+      this.checkAndRemoveCards(this.selectedCards[0], this.selectedCards[1]);
+    }
   }
+
+  checkAndRemoveCards(card1:Card, card2:Card) {
+    if (card1.name === card2.name && card1.id !== card2.id) {
+      this.cards = this.cards.filter(item => item !== card1);
+      this.cards = this.cards.filter(item => item !== card2);
+    }
+  }
+
 }
