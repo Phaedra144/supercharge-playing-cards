@@ -10,6 +10,7 @@ import { CARDS } from '../card-list';
 export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
+  selectedCard: Card;
 
   constructor() { }
 
@@ -23,4 +24,7 @@ export class CardsComponent implements OnInit {
     }
   }
 
+  onCardClick(card) {
+    this.selectedCard = card;
+  }
 }
