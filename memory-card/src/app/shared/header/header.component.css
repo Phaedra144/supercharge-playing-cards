@@ -7,22 +7,17 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  display: flex;
 }
 
-header h1 {
+header p {
   text-transform: uppercase;
-  float: left;
 }
 
-header div {
-  float: right;
-}
-
-header h1,
-header p {
-  line-height: 20px;
-}
-
-header p {
-  float: left;
+header img {
+  width: 30px;
+  height: 30px;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  margin: 10px 10px 0 0;
 }
