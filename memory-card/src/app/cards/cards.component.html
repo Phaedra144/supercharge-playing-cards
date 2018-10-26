@@ -3,10 +3,10 @@
 <button>Restart</button>
 
 <div class="grid grid-pad">
-<a *ngFor="let card of cards" class="col-1-5" (click)="onCardClick(card)">
-    <div class="module card" [class.selected]="card === selectedCard">
-      <img [src]="selectedCard.imgUrl" *ngIf="selectedCard">
-      <h4></h4>
+  <a *ngFor="let card of cards" class="col-1-5" (click)="onCardClick(card)">
+    <div class="module card" >
+<div [class.selected]="card === selectedCard" *ngIf="selectedCard" [style.background-image]="'url(' + selectedCard.imgUrl + ')'">
+      </div>
     </div>
   </a>
 </div>
