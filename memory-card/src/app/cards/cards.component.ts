@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Card } from '../card';
 import { CARDS } from '../card-list';
 
@@ -14,9 +14,13 @@ export class CardsComponent implements OnInit {
 
   constructor() { }
 
+  @Input() deckSize: number;
+
   ngOnInit() {
     this.cards = [];
     this.getMemoryCards();
+    console.log(this.deckSize);
+    
   }
 
   ngAfterViewChecked() {
