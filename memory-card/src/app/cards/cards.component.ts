@@ -18,6 +18,12 @@ export class CardsComponent implements OnInit {
     this.getMemoryCards();
   }
 
+  ngAfterViewChecked() {
+    if (this.selectedCards.length === 2) {
+      this.checkAndRemoveCards(this.selectedCards[0], this.selectedCards[1]);
+    }
+  }
+
   getMemoryCards() {
     let count = 1;
     while (count !== 3) {
@@ -36,10 +42,6 @@ export class CardsComponent implements OnInit {
     } else {
       this.selectedCards = [];
     }
-
-    if (this.selectedCards.length === 2) {
-      this.checkAndRemoveCards(this.selectedCards[0], this.selectedCards[1]);
-    }
   }
 
   checkAndRemoveCards(card1:Card, card2:Card) {
@@ -48,5 +50,4 @@ export class CardsComponent implements OnInit {
       this.cards = this.cards.filter(item => item !== card2);
     }
   }
-
 }
