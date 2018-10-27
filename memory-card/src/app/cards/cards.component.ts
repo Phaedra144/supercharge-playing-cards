@@ -20,7 +20,7 @@ export class CardsComponent implements OnInit {
 
   ngAfterViewChecked() {
     if (this.selectedCards.length === 2) {
-      this.checkAndRemoveCards(this.selectedCards[0], this.selectedCards[1]);
+      this.checkAndRemoveCards();
     }
   }
 
@@ -32,6 +32,7 @@ export class CardsComponent implements OnInit {
       }
       count++;
     }
+    this.shuffleArray(this.cards);
   }
 
   onCardClick(card) {
@@ -44,10 +45,18 @@ export class CardsComponent implements OnInit {
     }
   }
 
-  checkAndRemoveCards(card1:Card, card2:Card) {
-    if (card1.name === card2.name && card1.id !== card2.id) {
-      this.cards = this.cards.filter(item => item !== card1);
-      this.cards = this.cards.filter(item => item !== card2);
+  checkAndRemoveCards() {
+    if (this.selectedCards[0].name === this.selectedCards[1].name && this.selectedCards[0].id !== this.selectedCards[1].id) {
+      for (let i = 0; i < 2; i++) {
+        this.cards = this.cards.filter(item => item !== this.selectedCards[i]);       
+      }
+    }
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; 
     }
   }
 }
