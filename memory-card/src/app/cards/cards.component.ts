@@ -15,6 +15,7 @@ export class CardsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.cards = [];
     this.getMemoryCards();
   }
 
@@ -43,6 +44,10 @@ export class CardsComponent implements OnInit {
     } else {
       this.selectedCards = [];
     }
+  }
+
+  onRestartClick() {
+    this.ngOnInit();
   }
 
   checkAndRemoveCards() {
