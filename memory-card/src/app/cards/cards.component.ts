@@ -12,7 +12,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
 
   cards: Card[] = [];
   selectedCards: Card[] = [];
-
+  user: User;
 
   constructor() { }
 
@@ -21,6 +21,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.cards = [];
     this.getMemoryCards();
+    this.user = new User();
     console.log(this.deckSize);
   }
 
@@ -48,6 +49,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
       this.selectedCards[0] = card;
     } else if (this.selectedCards[1] == null) {
       this.selectedCards[1] = card;
+      this.user.score++;      
     }
   }
 

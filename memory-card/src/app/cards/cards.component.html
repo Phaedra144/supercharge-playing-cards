@@ -1,6 +1,8 @@
-<span>Current tries:</span>
-<span>Best:</span>
-<button (click)="onRestartClick()">Restart</button>
+<div class="results">
+  <span>Current tries: {{user.score}}</span>
+<span>Best: {{user.best}}</span>
+  <button (click)="onRestartClick()">Restart</button>
+</div>
 
 <div class="grid grid-pad">
   <a *ngFor="let card of cards" class="col-1-5" (click)="onCardClick(card)">
