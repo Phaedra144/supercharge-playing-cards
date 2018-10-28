@@ -1,16 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Card } from '../card';
 import { CARDS } from '../card-list';
+import { User } from '../user';
 
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css']
 })
-export class CardsComponent implements OnInit {
+export class CardsComponent implements OnInit, AfterViewChecked {
 
   cards: Card[] = [];
   selectedCards: Card[] = [];
+
 
   constructor() { }
 
@@ -20,7 +22,6 @@ export class CardsComponent implements OnInit {
     this.cards = [];
     this.getMemoryCards();
     console.log(this.deckSize);
-    
   }
 
   ngAfterViewChecked() {
@@ -47,7 +48,7 @@ export class CardsComponent implements OnInit {
       this.selectedCards[0] = card;
     } else if (this.selectedCards[1] == null) {
       this.selectedCards[1] = card;
-    } 
+    }
   }
 
   onRestartClick() {
@@ -57,7 +58,7 @@ export class CardsComponent implements OnInit {
   checkAndRemoveCards() {
     if (this.selectedCards[0].name === this.selectedCards[1].name && this.selectedCards[0].id !== this.selectedCards[1].id) {
       for (let i = 0; i < 2; i++) {
-        this.cards = this.cards.filter(item => item !== this.selectedCards[i]);       
+        this.cards = this.cards.filter(item => item !== this.selectedCards[i]);
       }
     }
     this.selectedCards = [];
@@ -66,7 +67,7 @@ export class CardsComponent implements OnInit {
   shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; 
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 }
