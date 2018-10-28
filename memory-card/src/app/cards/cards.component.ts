@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Card } from '../card';
 import { CARDS } from '../card-list';
 import { User } from '../user';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-cards',
@@ -14,16 +15,17 @@ export class CardsComponent implements OnInit, AfterViewChecked {
   selectedCards: Card[] = [];
   user: User;
   best: number;
+  deckSize: number;
 
-  constructor() { }
-
-  @Input() deckSize: number;
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
     this.cards = [];
-    this.getMemoryCards(3);
+    this.deckSize = this.dataService.deckSize;
+    this.getMemoryCards(this.deckSize);
     this.user = new User();
-    console.log(this.deckSize);
   }
 
   ngAfterViewChecked() {
@@ -54,7 +56,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
       this.selectedCards[0] = card;
     } else if (this.selectedCards[1] == null) {
       this.selectedCards[1] = card;
-      this.user.score++;    
+      this.user.score++;
     }
   }
 
