@@ -13,6 +13,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
   cards: Card[] = [];
   selectedCards: Card[] = [];
   user: User;
+  best: number;
 
   constructor() { }
 
@@ -20,7 +21,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.cards = [];
-    this.getMemoryCards();
+    this.getMemoryCards(3);
     this.user = new User();
     console.log(this.deckSize);
   }
@@ -29,12 +30,16 @@ export class CardsComponent implements OnInit, AfterViewChecked {
     if (this.selectedCards.length === 2) {
       this.checkAndRemoveCards();
     }
+    if (this.cards.length === 0){
+      this.user.best = this.user.score;
+      this.best = this.user.best;
+    }
   }
 
-  getMemoryCards() {
+  getMemoryCards(deckSize: number) {
     let count = 1;
     while (count !== 3) {
-      for (let index = 0; index < CARDS.length; index++) {
+      for (let index = 0; index < deckSize; index++) {
         let id = 1;
         this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, id * count));
         id++;
