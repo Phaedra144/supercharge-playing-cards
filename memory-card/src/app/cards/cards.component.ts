@@ -33,7 +33,9 @@ export class CardsComponent implements OnInit {
     let count = 1;
     while (count !== 3) {
       for (let index = 0; index < CARDS.length; index++) {
-        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, index * count));
+        let id = 1;
+        this.cards.push(new Card(CARDS[index].name, CARDS[index].imgUrl, id * count));
+        id++;
       }
       count++;
     }
@@ -45,9 +47,7 @@ export class CardsComponent implements OnInit {
       this.selectedCards[0] = card;
     } else if (this.selectedCards[1] == null) {
       this.selectedCards[1] = card;
-    } else {
-      this.selectedCards = [];
-    }
+    } 
   }
 
   onRestartClick() {
@@ -60,6 +60,7 @@ export class CardsComponent implements OnInit {
         this.cards = this.cards.filter(item => item !== this.selectedCards[i]);       
       }
     }
+    this.selectedCards = [];
   }
 
   shuffleArray(array) {
