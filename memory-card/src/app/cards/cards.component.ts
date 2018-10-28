@@ -16,6 +16,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
   user: User;
   best: number;
   deckSize: number;
+  limit = 300;
 
   constructor(
     private dataService: DataService
@@ -23,6 +24,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.cards = [];
+    this.selectedCards = [];
     this.deckSize = this.dataService.deckSize;
     this.getMemoryCards(this.deckSize);
     this.user = new User();
@@ -32,9 +34,9 @@ export class CardsComponent implements OnInit, AfterViewChecked {
     if (this.selectedCards.length === 2) {
       this.checkAndRemoveCards();
     }
-    if (this.cards.length === 0) {
-      this.user.best = this.user.score;
-      this.best = this.user.best;
+    if (this.cards.length === 0 && this.user.score < this.limit) {
+      this.best = this.user.score;
+      this.limit = this.best;
     }
   }
 
