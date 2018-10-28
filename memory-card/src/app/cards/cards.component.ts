@@ -30,7 +30,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
     if (this.selectedCards.length === 2) {
       this.checkAndRemoveCards();
     }
-    if (this.cards.length === 0){
+    if (this.cards.length === 0) {
       this.user.best = this.user.score;
       this.best = this.user.best;
     }
@@ -54,7 +54,7 @@ export class CardsComponent implements OnInit, AfterViewChecked {
       this.selectedCards[0] = card;
     } else if (this.selectedCards[1] == null) {
       this.selectedCards[1] = card;
-      this.user.score++;      
+      this.user.score++;    
     }
   }
 
