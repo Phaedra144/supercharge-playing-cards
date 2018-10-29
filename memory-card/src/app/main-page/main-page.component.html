@@ -1,0 +1,17 @@
+<div class="main">
+  <div class="titles">
+    <h2>supercharge</h2>
+    <p>memory game</p>
+  </div>
+  <div class="input-div">
+    <label>Deck size number of pairs</label>
+    <div>
+      <select [(ngModel)]="deckSizeText" #deckSize="ngModel">
+          <option *ngFor=" let n of cardsLength" [value]="n" [selected]="deckSize == n">{{n}}</option>
+      </select>
+    </div>
+    <button (click)="addDeckSize(deckSize.value)">
+      Start new game
+    </button>
+  </div>
+</div>
